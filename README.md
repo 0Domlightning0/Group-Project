@@ -7,6 +7,7 @@
 - Withdraw limit
   
 ### Customer database:
+- Accessed with a password
 - Name
 - Date Created
 - Amount of money
