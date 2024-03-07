@@ -31,14 +31,14 @@ public:
 	~BankUser();
 
 
-	// Getters: void get_[Variable name](){ return [Variable name];};
+	// Getters: datatype get_[Variable name](){ return [Variable name];};
 
 	string get_firstname() { return firstname; };
 	string get_lastname() { return lastname; };
 	string get_dateCreated() { return dateCreated; };
 	string get_password() { return password; };
 
-	// Setters set_[Variable name](datatype [First 2 letters of variable]){ [Variable name] = [First 2 letters of variable];};
+	// Setters void set_[Variable name](datatype [First 2 letters of variable]){ [Variable name] = [First 2 letters of variable];};
 
 	void set_firstname(string fi) { firstname = fi; };
 	void set_lastname(string la) { lastname = la; };
