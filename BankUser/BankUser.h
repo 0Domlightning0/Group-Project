@@ -1,4 +1,4 @@
-// Cpp for BankUser class
+// Header for BankUser class
 
 #pragma once
 
@@ -31,14 +31,14 @@ public:
 	~BankUser();
 
 
-	// Getters: datatype get_[Variable name](){ return [Variable name];};
+	// Getters: void get_[Variable name](){ return [Variable name];};
 
 	string get_firstname() { return firstname; };
 	string get_lastname() { return lastname; };
 	string get_dateCreated() { return dateCreated; };
 	string get_password() { return password; };
 
-	// Setters void set_[Variable name](datatype [First 2 letters of variable]){ [Variable name] = [First 2 letters of variable];};
+	// Setters set_[Variable name](datatype [First 2 letters of variable]){ [Variable name] = [First 2 letters of variable];};
 
 	void set_firstname(string fi) { firstname = fi; };
 	void set_lastname(string la) { lastname = la; };
@@ -49,10 +49,10 @@ public:
 	// Functions:
 
 	// Login function that uses the password and returns a bool that signals if the user(Admin/Customer) is given acccess
-	bool login(string p);
+	virtual bool login(string p);
 
 	// Logout function that brings the user ack to the menu
-	void logout();
+	virtual void logout();
 
 
 
