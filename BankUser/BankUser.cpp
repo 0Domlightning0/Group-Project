@@ -1,4 +1,4 @@
-// Header for BankUser class
+// Cpp for BankUser class
 
 #include "BankUser.h"
 
