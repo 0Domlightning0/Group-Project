@@ -6,6 +6,7 @@
 
 // Files / Classes to include 
 #include "BankUser.h"
+#include "Admin.h"
 
 
 using namespace std;
@@ -19,11 +20,18 @@ int main()
 
     User.set_firstname("Dominikski");
 
-    cout << User.get_firstname();
+    cout << User.get_firstname() << endl;
+
     
+    Admin CEO("Larrry", "Gono", "02/09/1783", "PassPass");
 
+    string p;
 
+    cin >> p;
 
+    CEO.login(p);
+
+    cout << "//////////////////////////////////////END OF TEST CODE//////////////////////////////////////" << endl;
 
     // Actual Code Area 
 }
