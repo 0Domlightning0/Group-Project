@@ -2,7 +2,7 @@
 #include <string>
 using namespace std;
 
-class Credit
+class Credit : 
 {
 private:
     bool m_lockCard; // Sets whether card is locked or unlocked
