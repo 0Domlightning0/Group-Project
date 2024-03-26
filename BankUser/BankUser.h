@@ -19,13 +19,15 @@ private:
 	string lastname = "";
 	string dateCreated = "";
 	string password = "";
+	string age = "";
+
 
 public:
 	// Default Constructor
 	BankUser();
 
 	// Overloaded Constructor
-	BankUser(string fi, string la, string da, string pa);
+	BankUser(string fi, string la, string da, string pa, string ag);
 
 	// Deconstructor 
 	~BankUser();
