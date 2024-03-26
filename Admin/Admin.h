@@ -19,22 +19,15 @@ using namespace std;
 
 class Admin : public BankUser
 {
-private:
+protected:
 	bool adminAccess = false;
 public:
 
 	Admin();
 
-	Admin(string fi, string la, string da, string pa, bool ad);
+	Admin(string fi, string la, string da, string pa, string ag);
 
 	~Admin();
-
-
-	// Getters: void get_[Variable name](){ return [Variable name];};
-	bool get_adminAccess() { return adminAccess; };
-
-	// Setters set_[Variable name](datatype [First 2 letters of variable]){ [Variable name] = [First 2 letters of variable];};
-	bool set_adminAccess(bool ad) { adminAccess = ad; };
 
 	// Creates a new Customer 
 	void regClient();
@@ -54,3 +47,4 @@ public:
 	// exits the account
 	void logout();
 };
+
