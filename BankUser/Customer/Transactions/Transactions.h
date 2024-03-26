@@ -27,13 +27,21 @@ public:
     void setnumDep(int numDep) { m_numDep = numDep; }
     void setnumWith(int numWith) { m_numWith = numWith; }
 
-    // Deposit function that allows a user to add money to an account
-    virtual void deposit(double amount);
+    // Deposit function that allows a user to add money to a checking(debit) account
+    virtual void depositC(double amount);
 
-    // Withdraw function that allows a user to take money out of an account
-    virtual void withdraw(double amount);
+    // Deposit function that allows a user to add money to a savings account
+    virtual void depositS(double amount);
 
+    // Withdraw function that allows a user to take money out of a checking(debit) account
+    virtual void withdrawC(double amount);
+    
+    // Withdraw function that allows a user to take money out of a savings account
+    virtual void withdrawS(double amount);
 
+    // Engage in one of the above transactions through a menu-driven function
+    void createTransaction(double amount);
+
+    // Navigate the transactions section using a menu
+    void navigate(double amount);
 };
-
-
