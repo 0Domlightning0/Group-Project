@@ -2,7 +2,7 @@
 #pragma once
 using namespace std;
 
-class Transactions{
+class TransactionsFilter{
 private:
 	
 
