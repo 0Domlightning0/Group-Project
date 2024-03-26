@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 using namespace std;
-class Savings
+class Savings //: Class Customer
 {
 private:
 	string m_displaySavings;
