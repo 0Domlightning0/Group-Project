@@ -6,8 +6,7 @@ Admin::Admin() {
 	adminAccess = false;
 };
 
-Admin::Admin(string fi, string la, string da, string pa, bool ad) : BankUser(fi, la, da, pa) {
-	adminAccess = ad;
+Admin::Admin(string fi, string la, string da, string pa, string ag) : BankUser(fi,la,da,pa,ag) {
 };
 
 Admin::~Admin() {};
@@ -25,7 +24,7 @@ bool Admin::login(string p) {
 		return true;
 	}
 	else {
-		cout << "Incorrect Password " << endl;
+		cout << "Incorrect Password "<< endl;
 		return false;
 		adminAccess = false;
 	}
