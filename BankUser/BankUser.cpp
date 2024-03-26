@@ -12,11 +12,12 @@ BankUser::BankUser() {
 };
 
 // Overloaded Constructor
-BankUser::BankUser(string fi, string la, string da, string pa) {
+BankUser::BankUser(string fi, string la, string da, string pa, string ag) {
 	firstname = fi;
 	lastname = la;
 	dateCreated = da;
 	password = pa;
+	age = ag;
 };
 
 // Deconstructor 
