@@ -25,7 +25,7 @@ public:
 
 	Admin();
 
-	Admin(string fi, string la, string da, string pa, string ag);
+	Admin(string fi, string la, string da, string pa, string ag, int id);
 
 	~Admin();
 
