@@ -19,9 +19,11 @@ int main()
 {
     ofstream outfile;
 
-    outfile.open("CustomerAccounts");
+    outfile.open("CustomerList.txt", std::ios_base::app);
 
     // Testing Area
+
+    /*
     BankUser User("Dominik", "Wrobelski", "06/03/2024", "Password123", "20");
 
     cout << User.get_firstname() << endl;
@@ -29,9 +31,11 @@ int main()
     User.set_firstname("Dominikski");
 
     cout << User.get_firstname() << endl;
+    */
+    
 
     
-    CustomerSettings Admin("Larrry", "Gono", "02/09/1783", "PassPass", "20");
+    CustomerSettings Admin("Larrry", "Gono", "02/09/1783", "PassPass", "20", 400508949);
 
     string p;
     cout << "Input Password: ";
@@ -42,7 +46,8 @@ int main()
     Customer* list = new Customer[100];
 
 
-    list[0] = Admin.createAccount();
+    list[0] = Admin.createAccount(outfile);
+    list[1] = Admin.createAccount(outfile);
 
     cout << list[0].get_firstname();
 
