@@ -6,7 +6,7 @@ Admin::Admin() {
 	adminAccess = false;
 };
 
-Admin::Admin(string fi, string la, string da, string pa, string ag) : BankUser(fi,la,da,pa,ag) {
+Admin::Admin(string fi, string la, string da, string pa, string ag, int id) : BankUser(fi,la,da,pa,ag,id) {
 };
 
 Admin::~Admin() {};
