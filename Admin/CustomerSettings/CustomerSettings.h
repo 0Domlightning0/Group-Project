@@ -9,7 +9,7 @@ private:
 public:
     CustomerSettings();
 
-    CustomerSettings(string fi, string la, string da, string pa, string ag);
+    CustomerSettings(string fi, string la, string da, string pa, string ag, int id);
 
     ~CustomerSettings();
 
@@ -19,7 +19,7 @@ public:
     Customer changeAccount();
 
     // Creating a Customer Account, creates a new customer object
-    Customer createAccount();
+    Customer createAccount(ofstream& outfile);
 
     // Flagging Account
     void flagAccount();
