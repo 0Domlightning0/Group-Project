@@ -107,31 +107,90 @@ void Requests::outRequests(double amount)
 		}
 		else if (choice == 1)
 		{
-			int tempID = 12345;
-			int enteredID;
-			double enteredAmount;
-			cout << "\nPlease enter the user ID of the person you would like to send money to: \n" << endl;
-			cin >> enteredID;
-
-			cout << "/Please enter the amount of money you would like to send to user #" << enteredID << ": \n" << endl;
-			cin >> enteredAmount;
-
-
-
+			sendMoney(amount);
 		}
 		else if (choice == 2)
 		{
-			outRequests();
+			requestMoney(amount);
 		}
 		else if (choice == 3)
 		{
-			inRequests();
+			
 		}
 		else if (choice == 4)
 		{
 			navigateRequests(amount);
 		}
 	} while (choice != 1 && choice != 2 && choice != 3 && choice != 4);
+}
+
+void Requests::sendMoney(double amount)
+{
+	int tempID = 12345;
+	int enteredID;
+	double enteredAmount;
+	int selectedAcc;
+	string account;
+	char confirm;
+
+	cout << "\nPlease enter the user ID of the person you would like to send money to: " << endl;
+	cin >> enteredID;
+
+	cout << "\nPlease enter the amount of money you would like to send to user #" << enteredID << ": " << endl;
+	cin >> enteredAmount;
+
+	cout << "\nPlease select the account you would like to send money from:\n1) - Checking\n2) - Savings" << endl;
+	cin >> selectedAcc;
+
+	if (selectedAcc == 1)
+	{
+		account = "Checking";
+	}
+	else if (selectedAcc == 2)
+	{
+		account = "Savings";
+	}
+	else if (selectedAcc != 1 && selectedAcc != 2)
+	{
+		cout << "\nERROR: Please restart and choose a valid account" << endl;
+
+		outRequests(amount);
+	}
+
+	cout << "\nYou are currently attempting to send " << enteredAmount << " to user #" << enteredID << " From your " << account << " account\nIs this correct ? (Y / N) : \n" << endl;
+	cin >> confirm;
+
+	if (confirm == 'N')
+	{
+		cout << "\nYou Chose: N\nYou are now being taken back to the outgoing requests menu." << endl;
+
+		outRequests(amount);
+	}
+	else if (confirm != 'Y' && confirm != 'N')
+	{
+		cout << "\nYou must enter a valid choice.\nPlease restart this process." << endl;
+
+		sendMoney(amount);
+	}
+
+	if (enteredID != tempID)
+	{
+		cout << "\nERROR: The user you are attempting to send money to does not exist.\nPlease try again.\n" << endl;
+
+		outRequests(amount);
+	}
+	else if (enteredID == tempID)
+	{
+		cout << "\nYou Chose: Y\nThe request to send $" << enteredAmount << " to user #" << enteredID << " from your " << account << " has been sent and is awaiting their approval\n" << endl;
+
+		outRequests(amount);
+	}
+
+}
+
+void Requests::requestMoney(double amount)
+{
+
 }
 
 // Function to view and approve/deny incoming requests
