@@ -35,7 +35,7 @@ public:
 
     // Withdraw function that allows a user to take money out of a checking(debit) account
     virtual void withdrawC(double amount);
-    
+
     // Withdraw function that allows a user to take money out of a savings account
     virtual void withdrawS(double amount);
 
