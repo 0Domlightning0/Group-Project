@@ -1,4 +1,5 @@
 #include "Transactions.h"
+#include "Requests.h"
 #include <iostream>
 
 using namespace std;
@@ -36,7 +37,7 @@ void Transactions::depositC(double amount)
 	//userBalance += amount
 	//cout updated balance, transaction complete
 
-	double userBalance = 20;
+	double userBalance = 1000;
 
 	cout << "\nPlease enter the amount you would like to deposit: " << endl;
 	cin >> amount;
@@ -44,7 +45,7 @@ void Transactions::depositC(double amount)
 	userBalance += amount;
 
 	cout << "\nTransaction Successful!\nYour updated balance is: $" << userBalance << endl;
-	
+
 }
 
 // Deposit function that allows a user to add money to a savings account
@@ -57,7 +58,7 @@ void Transactions::depositS(double amount)
 	//userBalance += amount
 	//cout updated balance, transaction complete
 
-	double userBalance = 20;
+	double userBalance = 1000;
 
 	cout << "\nPlease enter the amount you would like to deposit: " << endl;
 	cin >> amount;
@@ -78,11 +79,11 @@ void Transactions::withdrawC(double amount)
 	//userBalance -= amount
 	//cout updated balance, transaction complete
 
-	double userBalance = 20;
+	double userBalance = 1000;
 
 	cout << "\nPlease enter the amount you would like to withdraw: " << endl;
 	cin >> amount;
-	
+
 	if (userBalance < amount)
 	{
 		cout << "\nERROR: Insufficient funds" << endl;
@@ -105,8 +106,8 @@ void Transactions::withdrawS(double amount)
 	//if amount > userBalance, cout error, insufficient funds
 	//userBalance -= amount
 	//cout updated balance, transaction complete
-	
-	double userBalance = 20;
+
+	double userBalance = 1000;
 
 	cout << "\nPlease enter the amount you would like to withdraw: " << endl;
 	cin >> amount;
@@ -148,14 +149,14 @@ void Transactions::createTransaction(double amount)
 			else if (c1 == 1)
 			{
 				depositC(amount);
-			}	
+			}
 			else if (c1 == 2)
 			{
 				depositS(amount);
 			}
 			else if (c1 == 3)
 			{
-				//Go back
+				createTransaction(amount);
 			}
 		}
 
@@ -179,13 +180,13 @@ void Transactions::createTransaction(double amount)
 			}
 			else if (c2 == 3)
 			{
-				//Go back
+				createTransaction(amount);
 			}
 		}
 
 		else if (choice == 3)
 		{
-			// go back to the MAIN transactions menu
+			navigate(amount);
 		}
 	} while (choice != 1 && choice != 2 && choice != 3);
 
@@ -196,12 +197,12 @@ void Transactions::navigate(double amount)
 	int choice;
 	do
 	{
-		cout << "Please select one of the following options\n\n1) - Make a Transaction\n2) - View Transaction History\n3) - Requests Menu\n4) - Go Back\n" << endl;
+		cout << "\nPlease select one of the following options\n\n1) - Make a Transaction\n2) - View Transaction History\n3) - Requests Menu\n4) - Go Back\n" << endl;
 		cin >> choice;
 
 		if (choice != 1 && choice != 2 && choice != 3 && choice != 4)
 		{
-			cout << "ERROR: Please enter a vailid choice." << endl;
+			cout << "\nERROR: Please enter a vailid choice.\n" << endl;
 		}
 		else if (choice == 1)
 		{
@@ -213,11 +214,12 @@ void Transactions::navigate(double amount)
 		}
 		else if (choice == 3)
 		{
-			// create a requests menu? (not sure if this should go on the main page after logging in, or hidden away in transactions
+			Requests back;
+			back.navigateRequests(amount);
 		}
 		else if (choice == 4)
 		{
-			// go back to the beginning page after logging in
+			// Return to a menu function in customer (likely seen immediately after logging in)
 		}
 	} while (choice != 1 && choice != 2 && choice != 3 && choice != 4);
 }
