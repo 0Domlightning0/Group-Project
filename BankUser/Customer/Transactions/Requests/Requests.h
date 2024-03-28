@@ -7,7 +7,7 @@ protected:
     double m_loanAmount;
 
 public:
-    
+
     // Default constructor
     Requests();
 
@@ -34,5 +34,8 @@ public:
 
     // Function to view and approve/deny incoming requests
     void inRequests(double amount);
-};
 
+    void sendMoney(double amount);
+
+    void requestMoney(double amount);
+};
