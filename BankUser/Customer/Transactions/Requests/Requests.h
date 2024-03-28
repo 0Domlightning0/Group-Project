@@ -4,32 +4,35 @@ class Requests :
     public Transactions
 {
 protected:
+    double m_loanAmount;
 
 public:
-    // Default Constructor
+    
+    // Default constructor
     Requests();
 
-    // Overloaded Constructor
-    Requests(int temp);
+    // Overloaded constructor
+    Requests(double loanAmount);
 
     // Deconstructor
     ~Requests();
 
     // Getters
-    
+    double getloanAmount() { return m_loanAmount; }
 
-    // Setters
+    //Setters
+    void setloanAmount(double loanAmount) { m_loanAmount = loanAmount; }
 
+    // Function to navigate a requests menu
+    virtual void navigateRequests(double amount);
 
     // Function to apply for a bank loan
+    virtual void loanApply(double amount);
 
-    // Function to send a request (either send money or request money (outputs to file))
+    // Function to send a request to another user
+    void outRequests(double amount);
 
-    // Function to display your request history (reads your prior requests from a file)
-
-    // Function to approve/deny incoming requests (also lets you know if you have none to avoid a blank output)
-
-
+    // Function to view and approve/deny incoming requests
+    void inRequests(double amount);
 };
-
 
