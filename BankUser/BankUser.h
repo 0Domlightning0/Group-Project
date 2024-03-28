@@ -20,6 +20,7 @@ private:
 	string dateCreated = "";
 	string password = "";
 	string age = "";
+	int ID = 0;
 
 
 public:
@@ -27,7 +28,7 @@ public:
 	BankUser();
 
 	// Overloaded Constructor
-	BankUser(string fi, string la, string da, string pa, string ag);
+	BankUser(string fi, string la, string da, string pa, string ag, int id);
 
 	// Deconstructor 
 	~BankUser();
@@ -39,6 +40,10 @@ public:
 	string get_lastname() { return lastname; };
 	string get_dateCreated() { return dateCreated; };
 	string get_password() { return password; };
+	string get_age() { return age; };
+	int get_ID() { return ID; };
+
+
 
 	// Setters set_[Variable name](datatype [First 2 letters of variable]){ [Variable name] = [First 2 letters of variable];};
 
@@ -46,6 +51,12 @@ public:
 	void set_lastname(string la) { lastname = la; };
 	void set_dateCreated(string da) { dateCreated = da; };
 	void set_password(string pa) { password = pa; };
+	void set_age(string ag) { password = ag; };
+	void set_ID(int id) { ID = id; };
+
+
+    
+
 
 
 	// Functions:
