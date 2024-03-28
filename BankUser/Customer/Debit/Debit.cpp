@@ -33,7 +33,7 @@ void Debit::unlockCard() {
   }
 }
 
-void Debit::Overdraft() {
+void Debit::Overdraft() { // [set a limit for the overdraft]
   if (m_overdraft == false){
     cout << "Your account is not overdrawn.\n";
   }
