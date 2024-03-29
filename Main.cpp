@@ -17,25 +17,18 @@ using namespace std;
 
 int main()
 {
+
+    //Variables 
+
+    int len = 0;
+    string s;
+
     ofstream outfile;
 
     outfile.open("CustomerList.txt", std::ios_base::app);
 
-    // Testing Area
-
-    /*
-    BankUser User("Dominik", "Wrobelski", "06/03/2024", "Password123", "20");
-
-    cout << User.get_firstname() << endl;
-
-    User.set_firstname("Dominikski");
-
-    cout << User.get_firstname() << endl;
-    */
     
-
-    
-    CustomerSettings Admin("Larrry", "Gono", "02/09/1783", "PassPass", "20", 400508949);
+    CustomerSettings Admin("Larrry", "Gono", "02/09/1783", "p", "20", 400508949);
 
     string p;
     cout << "Input Password: ";
@@ -46,10 +39,38 @@ int main()
     Customer* list = new Customer[100];
 
 
-    list[0] = Admin.createAccount(outfile);
-    list[1] = Admin.createAccount(outfile);
+   Admin.createAccount(outfile);
+    //list[1] = Admin.createAccount(outfile);
 
-    cout << list[0].get_firstname();
+    //cout << list[0].get_firstname();
+
+    // Changing info
+
+    ifstream infile;
+
+    infile.open("CustomerList.txt", std::ios_base::app);
+
+    while (infile >> s) {
+        len += 1;
+    }
+    cout << "len is " << len/6 << endl;
+
+
+
+
+
+
+
+
+
+
+    ifstream infilechangeAccount;
+
+    infilechangeAccount.open("CustomerList.txt", std::ios_base::app);
+
+    
+
+    Admin.changeAccount(infilechangeAccount, len/6);
 
     cout << "//////////////////////////////////////END OF TEST CODE//////////////////////////////////////" << endl;
 
