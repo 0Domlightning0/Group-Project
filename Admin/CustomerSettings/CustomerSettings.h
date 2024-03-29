@@ -16,7 +16,7 @@ public:
     bool login(string p);
 
     // Changing Account Information
-    Customer changeAccount();
+    Customer changeAccount(ifstream& infile, int len);
 
     // Creating a Customer Account, creates a new customer object
     Customer createAccount(ofstream& outfile);
