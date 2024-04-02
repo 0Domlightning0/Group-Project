@@ -1,13 +1,19 @@
 #include "investments.h"
+investments::investments(){
+	rate = 0;
+}
+investments::investments(double r) {
+	rate = r;
+}
 
-investments::investments() {
-	invest = 0;
-	balance = 0;
-}
-investments::investments(double inv, double bal) {
-	invest = inv;
-	balance = bal;
-}
 investments::~investments() {
+
+}
+
+double investments::calculateReturn(double amount) {
+	return amount;
+}
+
+void investments::updateRate() {
 
 }
