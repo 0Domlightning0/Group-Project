@@ -21,8 +21,5 @@ public:
     // Creating a Customer Account, creates a new customer object
     Customer createAccount(ofstream& outfile);
 
-    // Flagging Account
-    void flagAccount();
-
 };
 
