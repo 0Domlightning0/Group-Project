@@ -7,7 +7,7 @@ BankUser::BankUser() {
 
 	firstname = "";
 	lastname = "";
-	dateCreated = "";
+	dateOfBirth = "";
 	password = "";
 };
 
@@ -15,7 +15,7 @@ BankUser::BankUser() {
 BankUser::BankUser(string fi, string la, string da, string pa, string ag, int id) {
 	firstname = fi;
 	lastname = la;
-	dateCreated = da;
+	dateOfBirth = da;
 	password = pa;
 	age = ag;
 	ID = id;
@@ -26,7 +26,12 @@ BankUser::~BankUser() {};
 
 // Login function that uses the password and returns a bool that signals if the user(Admin/Customer) is given acccess
 bool BankUser::login(string p) {
-	return false;
+	if (p == get_password()) {
+		return true;
+	}
+	else {
+		return false;
+	}
 };
 
 // Logout function that brings the user ack to the menu
