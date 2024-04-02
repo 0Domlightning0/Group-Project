@@ -31,7 +31,7 @@ public:
 	BankUser(string fi, string la, string da, string pa, string ag, int id);
 
 	//Overloaded Constructor for Customer
-	
+	BankUser(string fi, string la, string da, string pa, string ag, int id, double ba, bool fl);
 
 	// Deconstructor 
 	~BankUser();
