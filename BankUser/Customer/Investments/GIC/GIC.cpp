@@ -1,11 +1,10 @@
 #include "GIC.h"
 
 GIC::GIC() {
-
+	updateRate();
 }
-GIC::GIC(double inv, double bal) : investments(inv, bal) {
-	invest = inv;
-	balance = bal;
+GIC::GIC(double r) : investments(r) {
+	rate = r;
 }
 GIC::~GIC() {
 
