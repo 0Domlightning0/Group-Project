@@ -1,7 +1,6 @@
 #pragma once
 #include "BankUser.h"
-class Customer :
-    public BankUser
+class Customer : public BankUser
 {
 private:
     double balance = 0;
