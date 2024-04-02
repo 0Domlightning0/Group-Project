@@ -1,12 +1,13 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include "Customer.h"
 using namespace std;
 
 class Credit : public Customer
 {
 private:
-    bool m_lockCard;      
+    bool m_lockCard;
     int m_creditScore;
     bool m_overdraft;
 
@@ -15,7 +16,7 @@ public:
     Credit(bool LC, int score, bool overdraft);
 
 // Getters and setters
-    bool getLockCard() { return m_lockCard; } 
+    bool getLockCard() { return m_lockCard; }
     int getCreditScore() { return m_creditScore; }
     bool getOverdraft() { return m_overdraft; }
 
