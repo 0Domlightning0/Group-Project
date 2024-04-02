@@ -18,40 +18,19 @@ void Admin::regClient() {
 
 // Must input a password to access admin functions
 bool Admin::login(string p) {
-	if (p == get_password()) {
+	if (BankUser::login(p) == true) {
 		cout << "Welcome " << get_firstname() << endl;
 		adminAccess = true;
 		return true;
 	}
 	else {
-		cout << "Incorrect Password "<< endl;
-		return false;
+		cout << "Incorrect Password " << endl;
 		adminAccess = false;
+		return false;
 	}
 };
 
-// Shows all the data of the customers
-void Admin::viewCustomers() {
-	if (adminAccess == true) {
 
-	}
-};
-
-// Shows all transactions made on the program, uses transaction class
-void Admin::viewTransactions() {
-	if (adminAccess == true) {
-
-	}
-
-};
-
-// Shows all requests made on the program, uses requests class
-void Admin::viewRequests() {
-	if (adminAccess == true) {
-
-	}
-
-};
 
 // exits the account
 void Admin::logout() {
