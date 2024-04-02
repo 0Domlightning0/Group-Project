@@ -1,12 +1,10 @@
 #include "TFSA.h"
 
 TFSA::TFSA() {
-
+	updateRate();
 }
-TFSA::TFSA(double inv, double bal) : investments(inv, bal) {
-	invest = inv;
-	balance = bal;
-
+TFSA::TFSA(double r) : investments(r) {
+	rate = r;
 }
 TFSA::~TFSA() {
 
