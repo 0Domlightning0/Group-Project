@@ -1,11 +1,10 @@
 #include "stocks.h"
 
 stocks::stocks() {
-
+	updateRate();
 }
-stocks::stocks(double inv, double bal) : investments(inv, bal) {
-	invest = inv;
-	balance = bal;
+stocks::stocks(double r) : investments(r) {
+	rate = r;
 }
 stocks::~stocks() {
 
