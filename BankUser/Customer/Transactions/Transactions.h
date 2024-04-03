@@ -45,5 +45,6 @@ public:
     // Navigate the transactions section using a menu
     void navigate(double amount);
 
+    // View prior transaction history after entering ID
     void transactionHistory(double amount);
 };
