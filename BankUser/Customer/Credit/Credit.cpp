@@ -15,6 +15,8 @@ Credit::Credit(bool LC, int score, bool overdraft) {
     m_overdraft = overdraft;
 }
 
+Credit::~Credit() {}
+
 // Locks/Freezes the account
 void Credit::lockCard(bool LC) {
     if (LC == true) {
