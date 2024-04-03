@@ -14,6 +14,7 @@ private:
 public:
     Credit();
     Credit(bool LC, int score, bool overdraft);
+    ~Credit();
 
 // Getters and setters
     bool getLockCard() { return m_lockCard; }
