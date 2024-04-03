@@ -35,9 +35,12 @@ public:
     // Function to view and approve/deny incoming requests
     void inRequests(double amount);
 
+    // Function to send money to another user
     void sendMoney(double amount);
 
+    // Function to request money from another user
     void requestMoney(double amount);
 
+    // View outgoing request history
     void requestHistory(double amount);
 };
