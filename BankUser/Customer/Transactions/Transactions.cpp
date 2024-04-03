@@ -1,6 +1,8 @@
 #include "Transactions.h"
 #include "Requests.h"
 #include <iostream>
+#include <fstream>
+#include <string>
 
 using namespace std;
 
@@ -10,6 +12,7 @@ Transactions::Transactions()
 	m_balance = 0.0;
 	m_numDep = 0;
 	m_numWith = 0;
+
 }
 
 // Overloaded Constructor
@@ -46,6 +49,26 @@ void Transactions::depositC(double amount)
 
 	cout << "\nTransaction Successful!\nYour updated balance is: $" << userBalance << endl;
 
+	const char* filename = "CheckingDeposits.txt";
+
+	ofstream file;
+
+	file.open(filename, ios_base::app);
+
+	if (!file.is_open())
+	{
+		cout << "Error opening file: " << filename << ". Please ensure that the file is downloaded and it exists in the correct location." << endl;
+	}
+	else if (file.is_open())
+	{
+		cout << "\n";
+
+		file << "(USERID)" << " deposited " << amount << " to checking"  << "\n";
+	}
+
+	file.close();
+
+	createTransaction(amount);
 }
 
 // Deposit function that allows a user to add money to a savings account
@@ -66,6 +89,27 @@ void Transactions::depositS(double amount)
 	userBalance += amount;
 
 	cout << "\nTransaction Successful!\nYour updated balance is: $" << userBalance << endl;
+
+	const char* filename = "SavingsDeposits.txt";
+
+	ofstream file;
+
+	file.open(filename, ios_base::app);
+
+	if (!file.is_open())
+	{
+		cout << "Error opening file: " << filename << ". Please ensure that the file is downloaded and it exists in the correct location." << endl;
+	}
+	else if (file.is_open())
+	{
+		cout << "\n";
+
+		file << "(USERID)" << " deposited " << amount << " to savings" << "\n";
+	}
+
+	file.close();
+
+	createTransaction(amount);
 }
 
 // Withdraw function that allows a user to take money out of a checking(debit) account
@@ -93,6 +137,27 @@ void Transactions::withdrawC(double amount)
 		userBalance -= amount;
 
 		cout << "\nTransaction Successful!\nYour updated balance is: $" << userBalance << endl;
+
+		createTransaction(amount);
+
+		const char* filename = "CheckingWithdrawals.txt";
+
+		ofstream file;
+
+		file.open(filename, ios_base::app);
+
+		if (!file.is_open())
+		{
+			cout << "Error opening file: " << filename << ". Please ensure that the file is downloaded and it exists in the correct location." << endl;
+		}
+		else if (file.is_open())
+		{
+			cout << "\n";
+
+			file << "(USERID)" << " withdrew " << amount << " from checking" << "\n";
+		}
+
+		file.close();
 	}
 }
 
@@ -121,6 +186,27 @@ void Transactions::withdrawS(double amount)
 		userBalance -= amount;
 
 		cout << "\nTransaction Successful!\nYour updated balance is: $" << userBalance << endl;
+
+		createTransaction(amount);
+
+		const char* filename = "SavingsWithdrawals.txt";
+
+		ofstream file;
+
+		file.open(filename, ios_base::app);
+
+		if (!file.is_open())
+		{
+			cout << "Error opening file: " << filename << ". Please ensure that the file is downloaded and it exists in the correct location." << endl;
+		}
+		else if (file.is_open())
+		{
+			cout << "\n";
+
+			file << "(USERID)" << " withdrew " << amount << " from savings" << "\n";
+		}
+
+		file.close();
 	}
 }
 
@@ -210,7 +296,7 @@ void Transactions::navigate(double amount)
 		}
 		else if (choice == 2)
 		{
-			// View Transaction History
+			transactionHistory(amount);
 		}
 		else if (choice == 3)
 		{
@@ -222,4 +308,90 @@ void Transactions::navigate(double amount)
 			// Return to a menu function in customer (likely seen immediately after logging in)
 		}
 	} while (choice != 1 && choice != 2 && choice != 3 && choice != 4);
+}
+
+void Transactions::transactionHistory(double amount)
+{
+	string TempID;
+
+	cout << "\nPlease enter your userID: \n" << endl;
+	cin >> TempID;
+	cout << "\n";
+
+	// make a quick thing that grabs real userid and validates it is correct
+
+	const char* dcfilename = "CheckingDeposits.txt";
+	const char* dsfilename = "SavingsDeposits.txt";
+	const char* wcfilename = "CheckingWithdrawals.txt";
+	const char* wsfilename = "SavingsWithdrawals.txt";
+
+	string line;
+
+	ifstream dcfile(dcfilename);
+
+	if (!dcfile.is_open())
+	{
+		cout << "Error opening file: " << dcfilename << ". Please ensure that the file is downloaded and it exists in the correct location." << endl;
+	}
+
+	while (getline(dcfile, line))
+	{
+		if (line.find(TempID) != string::npos)
+		{
+			cout << line << endl;
+		}
+	}
+
+	dcfile.close();
+
+	ifstream dsfile(dsfilename);
+
+	if (!dsfile.is_open())
+	{
+		cout << "Error opening file: " << dsfilename << ". Please ensure that the file is downloaded and it exists in the correct location." << endl;
+	}
+
+	while (getline(dsfile, line))
+	{
+		if (line.find(TempID) != string::npos)
+		{
+			cout << line << endl;
+		}
+	}
+
+	dsfile.close();
+	
+	ifstream wcfile(wcfilename);
+
+	if (!wcfile.is_open())
+	{
+		cout << "Error opening file: " << wcfilename << ". Please ensure that the file is downloaded and it exists in the correct location." << endl;
+	}
+
+	while (getline(wcfile, line))
+	{
+		if (line.find(TempID) != string::npos)
+		{
+			cout << line << endl;
+		}
+	}
+
+	wcfile.close();
+
+	ifstream wsfile(wsfilename);
+
+	if (!wsfile.is_open())
+	{
+		cout << "Error opening file: " << wsfilename << ". Please ensure that the file is downloaded and it exists in the correct location." << endl;
+	}
+
+	while (getline(wsfile, line))
+	{
+		if (line.find(TempID) != string::npos)
+		{
+			cout << line << endl;
+		}
+	}
+
+	wsfile.close();
 }
