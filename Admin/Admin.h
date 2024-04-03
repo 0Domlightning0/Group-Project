@@ -29,22 +29,26 @@ public:
 
 	~Admin();
 
+	// Getters
+	bool get_adminAccess() { return adminAccess; };
+
+	// Setters
+	void set_adminAccess(bool ad) { adminAccess = ad; };
 	// Creates a new Customer 
 	void regClient();
 
 	// Must input a password to access admin functions
 	bool login(string p);
 
-	// Shows all the data of the customers
-	void viewCustomers();
-
-	// Shows all transactions made on the program, uses transaction class
-	void viewTransactions();
-
-	// Shows all requests made on the program, uses requests class
-	void viewRequests();
-
 	// exits the account
 	void logout();
+
+	void displayTransactions();
+
+	void displayRequests();
+
+	void displayInvestments();
 };
+
+
 
