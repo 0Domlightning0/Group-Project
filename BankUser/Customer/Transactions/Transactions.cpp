@@ -63,7 +63,7 @@ void Transactions::depositC(double amount)
 	{
 		cout << "\n";
 
-		file << "(USERID)" << " deposited " << amount << " to checking"  << "\n";
+		file << "(USERID)" << " deposited " << amount << " to checking" << "\n";
 	}
 
 	file.close();
@@ -360,7 +360,7 @@ void Transactions::transactionHistory(double amount)
 	}
 
 	dsfile.close();
-	
+
 	ifstream wcfile(wcfilename);
 
 	if (!wcfile.is_open())
@@ -394,4 +394,6 @@ void Transactions::transactionHistory(double amount)
 	}
 
 	wsfile.close();
+
+	navigate(amount);
 }
