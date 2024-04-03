@@ -4,7 +4,7 @@ class Requests :
     public Transactions
 {
 protected:
-    double m_loanAmount;
+    string m_loanAmount;
 
 public:
 
@@ -12,16 +12,16 @@ public:
     Requests();
 
     // Overloaded constructor
-    Requests(double loanAmount);
+    Requests(string loanAmount);
 
     // Deconstructor
     ~Requests();
 
     // Getters
-    double getloanAmount() { return m_loanAmount; }
+    string getloanAmount() { return m_loanAmount; }
 
     //Setters
-    void setloanAmount(double loanAmount) { m_loanAmount = loanAmount; }
+    void setloanAmount(string loanAmount) { m_loanAmount = loanAmount; }
 
     // Function to navigate a requests menu
     virtual void navigateRequests(double amount);
@@ -38,4 +38,6 @@ public:
     void sendMoney(double amount);
 
     void requestMoney(double amount);
+
+    void requestHistory(double amount);
 };
