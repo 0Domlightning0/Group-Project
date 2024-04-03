@@ -1,16 +1,18 @@
 #include "Requests.h"
 #include <iostream>
+#include <fstream>
+#include <string>
 
 using namespace std;
 
 // Default constructor
 Requests::Requests()
 {
-	m_loanAmount = 0.0;
+	m_loanAmount = "";
 }
 
 // Overloaded constructor
-Requests::Requests(double loanAmount)
+Requests::Requests(string loanAmount)
 {
 	m_loanAmount = loanAmount;
 }
@@ -57,39 +59,39 @@ void Requests::navigateRequests(double amount)
 // Will update to output this set amount to a file, linked to account number for admin to approve
 void Requests::loanApply(double amount)
 {
-	int lAmount;
-	do
+
+	cout << "\nPlease enter the amount of money you would like to apply for, without any spaces, symbols, or commas.\nType 'BACK' if you would like to return to the previous page.\n" << endl;
+	cin >> m_loanAmount;
+
+	if (m_loanAmount == "Back" || m_loanAmount == "BACK" || m_loanAmount == "back")
 	{
-		cout << "\nHow much money would you like to apply for?\n\n1) - $50\n2) - $500\n3) - $5000\n4) - Go Back\n" << endl;
-		cin >> lAmount;
+		navigateRequests(amount);
+	}
+	
+	const char* filename = "BankLoan.txt";
+	
+	ofstream file;
 
-		if (lAmount != 1 && lAmount != 2 && lAmount != 3 && lAmount != 4)
-		{
-			cout << "\nERROR: Please enter a vailid choice.\n" << endl;
-		}
-		else if (lAmount == 1)
-		{
-			cout << "\nYou have applied for $50!\nPlease wait for an admin to approve this request :)\n" << endl;
+	file.open(filename, ios_base::app);
+	
+	if (!file.is_open())
+	{
+		cout << "Error opening file: " << filename << ". Please ensure that the file is downloaded and it exists in the correct location." << endl;
+	}
+	else if (file.is_open())
+	{
+		cout << "\n";
 
-			navigateRequests(amount);
-		}
-		else if (lAmount == 2)
-		{
-			cout << "\nYou have applied for $500!\nPlease wait for an admin to approve this request :)\n" << endl;
+		file << "(USER ID) " << m_loanAmount << "\n";
+	}
 
-			navigateRequests(amount);
-		}
-		else if (lAmount == 3)
-		{
-			cout << "\nYou have applied for $5000!\nPlease wait for an admin to approve this request :)\n" << endl;
+	file.close();
 
-			navigateRequests(amount);
-		}
-		else if (lAmount == 4)
-		{
-			navigateRequests(amount);
-		}
-	} while (lAmount != 1 && lAmount != 2 && lAmount != 3 && lAmount != 4);
+	Requests req;
+
+	cout << "Your application for a $" << getloanAmount() << " loan has been sent to the admin for approval :)" << endl;
+
+	navigateRequests(amount);
 }
 
 // Function to send a request to another user
@@ -115,7 +117,7 @@ void Requests::outRequests(double amount)
 		}
 		else if (choice == 3)
 		{
-			
+			requestHistory(amount);
 		}
 		else if (choice == 4)
 		{
@@ -183,14 +185,166 @@ void Requests::sendMoney(double amount)
 	{
 		cout << "\nYou Chose: Y\nThe request to send $" << enteredAmount << " to user #" << enteredID << " from your " << account << " has been sent and is awaiting their approval\n" << endl;
 
+		const char* filename = "MoneySent.txt";
+
+		ofstream file;
+
+		file.open(filename, ios_base::app);
+
+		if (!file.is_open())
+		{
+			cout << "Error opening file: " << filename << ". Please ensure that the file is downloaded and it exists in the correct location." << endl;
+		}
+		else if (file.is_open())
+		{
+			cout << "\n";
+
+			file << "(USERID) " << " sent " << enteredID << " to " << enteredAmount << "\n";
+		}
+
+		file.close();
+
 		outRequests(amount);
 	}
-
 }
 
 void Requests::requestMoney(double amount)
 {
+	int tempID = 12345;
+	int enteredID;
+	double enteredAmount;
+	int selectedAcc;
+	string account;
+	char confirm;
 
+	cout << "\nPlease enter the user ID of the person you would like to request money from: " << endl;
+	cin >> enteredID;
+
+	cout << "\nPlease enter the amount of money you would like to request from user #" << enteredID << ": " << endl;
+	cin >> enteredAmount;
+
+	cout << "\nPlease select the account you would like the money deposited to:\n1) - Checking\n2) - Savings" << endl;
+	cin >> selectedAcc;
+
+	if (selectedAcc == 1)
+	{
+		account = "Checking";
+	}
+	else if (selectedAcc == 2)
+	{
+		account = "Savings";
+
+		//should probably add something to ensure account is still unlocked and active
+	}
+	else if (selectedAcc != 1 && selectedAcc != 2)
+	{
+		cout << "\nERROR: Please restart and choose a valid account" << endl;
+
+		outRequests(amount);
+	}
+
+	cout << "\nYou are currently attempting to request " << enteredAmount << " from user #" << enteredID << " to be deposited to your " << account << " account\nIs this correct ? (Y / N) : \n" << endl;
+	cin >> confirm;
+
+	if (confirm == 'N')
+	{
+		cout << "\nYou Chose: N\nYou are now being taken back to the outgoing requests menu." << endl;
+
+		outRequests(amount);
+	}
+	else if (confirm != 'Y' && confirm != 'N')
+	{
+		cout << "\nYou must enter a valid choice.\nPlease restart this process." << endl;
+
+		sendMoney(amount);
+	}
+
+	if (enteredID != tempID)
+	{
+		cout << "\nERROR: The user you are attempting to request money from does not exist.\nPlease try again.\n" << endl;
+
+		outRequests(amount);
+	}
+	else if (enteredID == tempID)
+	{
+		cout << "\nYou Chose: Y\nThe request for $" << enteredAmount << " from user #" << enteredID << " to be deposited to your " << account << " has been sent and is awaiting their approval\n" << endl;
+
+		const char* filename = "RequestSent.txt";
+
+		ofstream file;
+
+		file.open(filename, ios_base::app);
+
+		if (!file.is_open())
+		{
+			cout << "Error opening file: " << filename << ". Please ensure that the file is downloaded and it exists in the correct location." << endl;
+		}
+		else if (file.is_open())
+		{
+			cout << "\n";
+
+			file << "(USERID) " << " asked " << enteredID << " for " << enteredAmount << "\n";
+		}
+
+		file.close();
+
+		outRequests(amount);
+	}
+}
+
+// Function to view outgoing request history
+void Requests::requestHistory(double amount)
+{
+	string TempID;
+	
+	string tempRealID = "12345";
+
+	cout << "\nPlease enter your userID: \n" << endl;
+	cin >> TempID;
+	cout << "\n";
+
+	// make a quick thing that grabs real userid and validates it is correct
+
+	const char* rfilename = "RequestSent.txt";
+	const char* sfilename = "MoneySent.txt";
+
+	string line;
+
+	ifstream rfile(rfilename);
+
+	if (!rfile.is_open())
+	{
+		cout << "Error opening file: " << rfilename << ". Please ensure that the file is downloaded and it exists in the correct location." << endl;
+	}
+
+	while (getline(rfile, line))
+	{
+		if (line.find(TempID) != string::npos)
+		{
+			cout << line << endl;
+		}
+	}
+
+	rfile.close();
+
+	ifstream sfile(sfilename);
+
+	if (!sfile.is_open())
+	{
+		cout << "Error opening file: " << sfilename << ". Please ensure that the file is downloaded and it exists in the correct location." << endl;
+	}
+
+	while (getline(sfile, line))
+	{
+		if (line.find(TempID) != string::npos)
+		{
+			cout << line << endl;
+		}
+	}
+
+	sfile.close();
+
+	outRequests(amount);
 }
 
 // Function to view and approve/deny incoming requests
