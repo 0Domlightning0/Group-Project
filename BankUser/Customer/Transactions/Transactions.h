@@ -1,9 +1,11 @@
+// Jalen Taylor, 400470470
 #pragma once
 #include "Customer.h"
 class Transactions :
     public Customer
 {
 protected:
+    // Class variables
     double m_balance;
     int m_numDep;
     int m_numWith;
