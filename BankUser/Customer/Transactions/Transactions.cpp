@@ -302,6 +302,7 @@ void Transactions::withdrawS(double amount)
 	createTransaction(amount);
 }
 
+// Function that allows you to engage with the deposit and withdraw functions though a menu
 void Transactions::createTransaction(double amount)
 {
 	int choice;
@@ -370,6 +371,7 @@ void Transactions::createTransaction(double amount)
 
 }
 
+// Function that allows you to navigate the transactions class using a menu
 void Transactions::navigate(double amount)
 {
 	int choice;
@@ -402,6 +404,7 @@ void Transactions::navigate(double amount)
 	} while (choice != 1 && choice != 2 && choice != 3 && choice != 4);
 }
 
+// Function that allows a user to view thier previous transactions by searching their userID
 void Transactions::transactionHistory(double amount)
 {
 	string TempID;
@@ -409,8 +412,6 @@ void Transactions::transactionHistory(double amount)
 	cout << "\nPlease enter your userID: \n" << endl;
 	cin >> TempID;
 	cout << "\n";
-
-	// make a quick thing that grabs real userid and validates it is correct
 
 	const char* dcfilename = "CheckingDeposits.txt";
 	const char* dsfilename = "SavingsDeposits.txt";
