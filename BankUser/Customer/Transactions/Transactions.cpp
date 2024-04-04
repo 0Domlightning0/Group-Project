@@ -1,3 +1,4 @@
+// Jalen Taylor, 400470470
 #include "Transactions.h"
 #include "Requests.h"
 #include <iostream>
@@ -26,25 +27,28 @@ Transactions::Transactions(double balance, int numDep, int numWith)
 // Deconstructor
 Transactions::~Transactions()
 {
-}
 
-//The following functions use temp values, the intstructions in green will be followed to assign real values later:
+}
 
 // Deposit function that allows a user to add money to a checking(debit) account
 void Transactions::depositC(double amount)
 {
+	// prompt for the current user to enter their ID
 	string userID;
 
 	cout << "\nPlease enter your userID: \n" << endl;
 	cin >> userID;
 	cout << "\n";
 
+	// Creating a variable set to the current filename for convenience
 	const char* cfilename = "CustomerList.txt";
 
 	string line;
 
+	// Open the current file
 	ifstream cfile(cfilename);
 
+	// If the current file is not opening, cout an error message
 	if (!cfile.is_open())
 	{
 		cout << "Error opening file: " << cfilename << ". Please ensure that the file is downloaded and it exists in the correct location." << endl;
@@ -56,6 +60,7 @@ void Transactions::depositC(double amount)
 		{
 			cout << line << endl;
 
+			// Close the current file
 			cfile.close();
 
 			double userBalance = 1000;
@@ -67,12 +72,15 @@ void Transactions::depositC(double amount)
 
 			cout << "\nTransaction Successful!\nYour updated balance is: $" << userBalance << endl;
 
+			// Creating a variable set to the current filename for convenience
 			const char* filename = "CheckingDeposits.txt";
 
+			// Open the current file
 			ofstream file;
 
 			file.open(filename, ios_base::app);
 
+			// If the current file is not opening, cout an error message
 			if (!file.is_open())
 			{
 				cout << "Error opening file: " << filename << ". Please ensure that the file is downloaded and it exists in the correct location." << endl;
@@ -84,6 +92,7 @@ void Transactions::depositC(double amount)
 				file << userID << " deposited " << amount << " to checking" << "\n";
 			}
 
+			// Close the current file
 			file.close();
 
 			createTransaction(amount);
@@ -97,18 +106,22 @@ void Transactions::depositC(double amount)
 // Deposit function that allows a user to add money to a savings account
 void Transactions::depositS(double amount)
 {
+	// prompt for the current user to enter their ID
 	string userID;
 
 	cout << "\nPlease enter your userID: \n" << endl;
 	cin >> userID;
 	cout << "\n";
 
+	// Creating a variable set to the current filename for convenience
 	const char* cfilename = "CustomerList.txt";
 
 	string line;
 
+	// Open the current file
 	ifstream cfile(cfilename);
 
+	// If the current file is not opening, cout an error message
 	if (!cfile.is_open())
 	{
 		cout << "Error opening file: " << cfilename << ". Please ensure that the file is downloaded and it exists in the correct location." << endl;
@@ -119,7 +132,8 @@ void Transactions::depositS(double amount)
 		if (line.find(userID) != string::npos)
 		{
 			cout << line << endl;
-
+			
+			// Close the current file
 			cfile.close();
 
 			double userBalance = 1000;
@@ -131,12 +145,15 @@ void Transactions::depositS(double amount)
 
 			cout << "\nTransaction Successful!\nYour updated balance is: $" << userBalance << endl;
 
+			// Creating a variable set to the current filename for convenience
 			const char* filename = "SavingsDeposits.txt";
 
+			// Open the current file
 			ofstream file;
 
 			file.open(filename, ios_base::app);
 
+			// If the current file is not opening, cout an error message
 			if (!file.is_open())
 			{
 				cout << "Error opening file: " << filename << ". Please ensure that the file is downloaded and it exists in the correct location." << endl;
@@ -148,6 +165,7 @@ void Transactions::depositS(double amount)
 				file << userID << " deposited " << amount << " to savings" << "\n";
 			}
 
+			// Close the current file
 			file.close();
 
 			createTransaction(amount);
@@ -161,18 +179,22 @@ void Transactions::depositS(double amount)
 // Withdraw function that allows a user to take money out of a checking(debit) account
 void Transactions::withdrawC(double amount)
 {
+	// prompt for the current user to enter their ID
 	string userID;
 
 	cout << "\nPlease enter your userID: \n" << endl;
 	cin >> userID;
 	cout << "\n";
 
+	// Creating a variable set to the current filename for convenience
 	const char* cfilename = "CustomerList.txt";
 
 	string line;
 
+	// Open the current file
 	ifstream cfile(cfilename);
 
+	// If the current file is not opening, cout an error message
 	if (!cfile.is_open())
 	{
 		cout << "Error opening file: " << cfilename << ". Please ensure that the file is downloaded and it exists in the correct location." << endl;
@@ -184,6 +206,7 @@ void Transactions::withdrawC(double amount)
 		{
 			cout << line << endl;
 
+			// Close the current file
 			cfile.close();
 
 			double userBalance = 1000;
@@ -201,11 +224,14 @@ void Transactions::withdrawC(double amount)
 
 				cout << "\nTransaction Successful!\nYour updated balance is: $" << userBalance << endl;
 
+				// Creating a variable set to the current filename for convenience
 				const char* filename = "CheckingWithdrawals.txt";
 
+				// Open the current file
 				ofstream file;
 
 				file.open(filename, ios_base::app);
+
 
 				if (!file.is_open())
 				{
@@ -218,6 +244,7 @@ void Transactions::withdrawC(double amount)
 					file << userID << " withdrew " << amount << " from checking" << "\n";
 				}
 
+				// Close the current file
 				file.close();
 			}
 
@@ -232,18 +259,22 @@ void Transactions::withdrawC(double amount)
 // Withdraw function that allows a user to take money out of a savings account
 void Transactions::withdrawS(double amount)
 {
+	// prompt for the current user to enter their ID
 	string userID;
 
 	cout << "\nPlease enter your userID: \n" << endl;
 	cin >> userID;
 	cout << "\n";
 
+	// Creating a variable set to the current filename for convenience
 	const char* cfilename = "CustomerList.txt";
 
 	string line;
 
+	// Open the current file
 	ifstream cfile(cfilename);
 
+	// If the current file is not opening, cout an error message
 	if (!cfile.is_open())
 	{
 		cout << "Error opening file: " << cfilename << ". Please ensure that the file is downloaded and it exists in the correct location." << endl;
@@ -255,6 +286,7 @@ void Transactions::withdrawS(double amount)
 		{
 			cout << line << endl;
 
+			// Close the current file
 			cfile.close();
 
 			double userBalance = 1000;
@@ -274,12 +306,15 @@ void Transactions::withdrawS(double amount)
 
 				createTransaction(amount);
 
+				// Creating a variable set to the current filename for convenience
 				const char* filename = "CheckingWithdrawals.txt";
 
+				// Open the current file
 				ofstream file;
 
 				file.open(filename, ios_base::app);
 
+				// If the current file is not opening, cout an error message
 				if (!file.is_open())
 				{
 					cout << "Error opening file: " << filename << ". Please ensure that the file is downloaded and it exists in the correct location." << endl;
@@ -291,6 +326,7 @@ void Transactions::withdrawS(double amount)
 					file << userID << " withdrew " << amount << " from checking" << "\n";
 				}
 
+				// Close the current file
 				file.close();
 			}
 
@@ -407,12 +443,14 @@ void Transactions::navigate(double amount)
 // Function that allows a user to view thier previous transactions by searching their userID
 void Transactions::transactionHistory(double amount)
 {
-	string TempID;
+	// prompt for the current user to enter their ID
+	string userID;
 
 	cout << "\nPlease enter your userID: \n" << endl;
-	cin >> TempID;
+	cin >> userID;
 	cout << "\n";
 
+	// Creating a variable set to the current filename for convenience
 	const char* dcfilename = "CheckingDeposits.txt";
 	const char* dsfilename = "SavingsDeposits.txt";
 	const char* wcfilename = "CheckingWithdrawals.txt";
@@ -420,8 +458,10 @@ void Transactions::transactionHistory(double amount)
 
 	string line;
 
+	// Open the current file
 	ifstream dcfile(dcfilename);
 
+	// If the current file is not opening, cout an error message
 	if (!dcfile.is_open())
 	{
 		cout << "Error opening file: " << dcfilename << ". Please ensure that the file is downloaded and it exists in the correct location." << endl;
@@ -429,16 +469,19 @@ void Transactions::transactionHistory(double amount)
 
 	while (getline(dcfile, line))
 	{
-		if (line.find(TempID) != string::npos)
+		if (line.find(userID) != string::npos)
 		{
 			cout << line << endl;
 		}
 	}
 
+	// Close the current file
 	dcfile.close();
 
+	// Open the current file
 	ifstream dsfile(dsfilename);
 
+	// If the current file is not opening, cout an error message
 	if (!dsfile.is_open())
 	{
 		cout << "Error opening file: " << dsfilename << ". Please ensure that the file is downloaded and it exists in the correct location." << endl;
@@ -446,16 +489,19 @@ void Transactions::transactionHistory(double amount)
 
 	while (getline(dsfile, line))
 	{
-		if (line.find(TempID) != string::npos)
+		if (line.find(userID) != string::npos)
 		{
 			cout << line << endl;
 		}
 	}
 
+	// Close the current file
 	dsfile.close();
 
+	// Open the current file
 	ifstream wcfile(wcfilename);
 
+	// If the current file is not opening, cout an error message
 	if (!wcfile.is_open())
 	{
 		cout << "Error opening file: " << wcfilename << ". Please ensure that the file is downloaded and it exists in the correct location." << endl;
@@ -463,16 +509,19 @@ void Transactions::transactionHistory(double amount)
 
 	while (getline(wcfile, line))
 	{
-		if (line.find(TempID) != string::npos)
+		if (line.find(userID) != string::npos)
 		{
 			cout << line << endl;
 		}
 	}
 
+	// Close the current file
 	wcfile.close();
 
+	// Open the current file
 	ifstream wsfile(wsfilename);
 
+	// If the current file is not opening, cout an error message
 	if (!wsfile.is_open())
 	{
 		cout << "Error opening file: " << wsfilename << ". Please ensure that the file is downloaded and it exists in the correct location." << endl;
@@ -480,12 +529,13 @@ void Transactions::transactionHistory(double amount)
 
 	while (getline(wsfile, line))
 	{
-		if (line.find(TempID) != string::npos)
+		if (line.find(userID) != string::npos)
 		{
 			cout << line << endl;
 		}
 	}
 
+	// Close the current file
 	wsfile.close();
 
 	navigate(amount);
