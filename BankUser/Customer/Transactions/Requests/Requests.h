@@ -1,9 +1,11 @@
+// Jalen Taylor, 400470470
 #pragma once
 #include "Transactions.h"
 class Requests :
     public Transactions
 {
 protected:
+    // Class variables
     string m_loanAmount;
 
 public:
