@@ -1,4 +1,4 @@
-
+// Jalen Taylor, 400470470
 #include "Requests.h"
 #include <iostream>
 #include <fstream>
@@ -59,18 +59,22 @@ void Requests::navigateRequests(double amount)
 // Function to apply for a bank loan, sent to admin for approval
 void Requests::loanApply(double amount)
 {
+	// prompt for the current user to enter their ID
 	string userID;
 
 	cout << "\nPlease enter your userID: \n" << endl;
 	cin >> userID;
 	cout << "\n";
 
+	// Creating a variable set to the current filename for convenience
 	const char* cfilename = "CustomerList.txt";
 
 	string line;
 
+	// Open the current file
 	ifstream cfile(cfilename);
 
+	// If the current file is not opening, cout an error message
 	if (!cfile.is_open())
 	{
 		cout << "Error opening file: " << cfilename << ". Please ensure that the file is downloaded and it exists in the correct location." << endl;
@@ -82,6 +86,7 @@ void Requests::loanApply(double amount)
 		{
 			cout << line << endl;
 
+			// Close the current file
 			cfile.close();
 
 			cout << "\nPlease enter the amount of money you would like to apply for, without any spaces, symbols, or commas.\nType 'BACK' if you would like to return to the previous page.\n" << endl;
@@ -92,12 +97,15 @@ void Requests::loanApply(double amount)
 				navigateRequests(amount);
 			}
 
+			// Creating a variable set to the current filename for convenience
 			const char* filename = "BankLoan.txt";
 
+			// Open the current file
 			ofstream file;
 
 			file.open(filename, ios_base::app);
 
+			// If the current file is not opening, cout an error message
 			if (!file.is_open())
 			{
 				cout << "Error opening file: " << filename << ". Please ensure that the file is downloaded and it exists in the correct location." << endl;
@@ -109,6 +117,7 @@ void Requests::loanApply(double amount)
 				file << userID << m_loanAmount << "\n";
 			}
 
+			// Close the current file
 			file.close();
 
 			Requests req;
@@ -158,18 +167,22 @@ void Requests::outRequests(double amount)
 // Function that allows a user to send money to another user
 void Requests::sendMoney(double amount)
 {
+	// prompt for the current user to enter their ID
 	string userID;
 
 	cout << "\nPlease enter your userID: \n" << endl;
 	cin >> userID;
 	cout << "\n";
 
+	// Creating a variable set to the current filename for convenience
 	const char* cfilename = "CustomerList.txt";
 
 	string line;
 
+	// Open the current file
 	ifstream cfile(cfilename);
 
+	// If the current file is not opening, cout an error message
 	if (!cfile.is_open())
 	{
 		cout << "Error opening file: " << cfilename << ". Please ensure that the file is downloaded and it exists in the correct location." << endl;
@@ -181,6 +194,7 @@ void Requests::sendMoney(double amount)
 		{
 			cout << line << endl;
 
+			// Close the current file
 			cfile.close();
 
 			int enteredID;
@@ -231,12 +245,15 @@ void Requests::sendMoney(double amount)
 
 			cout << "\nYou Chose: Y\nThe request to send $" << enteredAmount << " to user #" << enteredID << " from your " << account << " has been sent and is awaiting their approval\n" << endl;
 
+			// Creating a variable set to the current filename for convenience
 			const char* filename = "MoneySent.txt";
 
+			// Open the current file
 			ofstream file;
 
 			file.open(filename, ios_base::app);
 
+			// If the current file is not opening, cout an error message
 			if (!file.is_open())
 			{
 				cout << "Error opening file: " << filename << ". Please ensure that the file is downloaded and it exists in the correct location." << endl;
@@ -248,6 +265,7 @@ void Requests::sendMoney(double amount)
 				file << userID << " sent " << enteredID << " " << enteredAmount << "\n";
 			}
 
+			// Close the current file
 			file.close();
 
 			outRequests(amount);
@@ -261,18 +279,22 @@ void Requests::sendMoney(double amount)
 // Function that allows a user to request money from another user
 void Requests::requestMoney(double amount)
 {
+	// prompt for the current user to enter their ID
 	string userID;
 
 	cout << "\nPlease enter your userID: \n" << endl;
 	cin >> userID;
 	cout << "\n";
 
+	// Creating a variable set to the current filename for convenience
 	const char* cfilename = "CustomerList.txt";
 
 	string line;
 
+	// Open the current file
 	ifstream cfile(cfilename);
 
+	// If the current file is not opening, cout an error message
 	if (!cfile.is_open())
 	{
 		cout << "Error opening file: " << cfilename << ". Please ensure that the file is downloaded and it exists in the correct location." << endl;
@@ -284,6 +306,7 @@ void Requests::requestMoney(double amount)
 		{
 			cout << line << endl;
 
+			// Close the current file
 			cfile.close();
 
 			int enteredID;
@@ -334,12 +357,15 @@ void Requests::requestMoney(double amount)
 
 			cout << "\nYou Chose: Y\nThe request for $" << enteredAmount << " from user #" << enteredID << " to be deposited to your " << account << " has been sent and is awaiting their approval\n" << endl;
 
+			// Creating a variable set to the current filename for convenience
 			const char* filename = "RequestSent.txt";
 
+			// Open the current file
 			ofstream file;
 
 			file.open(filename, ios_base::app);
 
+			// If the current file is not opening, cout an error message
 			if (!file.is_open())
 			{
 				cout << "Error opening file: " << filename << ". Please ensure that the file is downloaded and it exists in the correct location." << endl;
@@ -351,6 +377,7 @@ void Requests::requestMoney(double amount)
 				file << "(USERID)" << " asked " << enteredID << " for " << enteredAmount << "\n";
 			}
 
+			// Close the current file
 			file.close();
 
 			outRequests(amount);
@@ -365,18 +392,22 @@ void Requests::requestMoney(double amount)
 // Function to view outgoing request history
 void Requests::requestHistory(double amount)
 {
+	// prompt for the current user to enter their ID
 	string userID;
 
 	cout << "\nPlease enter your userID: \n" << endl;
 	cin >> userID;
 	cout << "\n";
 
+	// Creating a variable set to the current filename for convenience
 	const char* cfilename = "CustomerList.txt";
 
 	string line;
 
+	// Open the current file
 	ifstream cfile(cfilename);
 
+	// If the current file is not opening, cout an error message
 	if (!cfile.is_open())
 	{
 		cout << "Error opening file: " << cfilename << ". Please ensure that the file is downloaded and it exists in the correct location." << endl;
@@ -388,15 +419,19 @@ void Requests::requestHistory(double amount)
 		{
 			cout << line << endl << endl;
 
+			// Close the current file
 			cfile.close();
 
+			// Creating a variable set to the current filename for convenience
 			const char* rfilename = "RequestSent.txt";
 			const char* sfilename = "MoneySent.txt";
 
 			string line;
 
+			// Open the current file
 			ifstream rfile(rfilename);
 
+			// If the current file is not opening, cout an error message
 			if (!rfile.is_open())
 			{
 				cout << "Error opening file: " << rfilename << ". Please ensure that the file is downloaded and it exists in the correct location." << endl;
@@ -410,10 +445,13 @@ void Requests::requestHistory(double amount)
 				}
 			}
 
+			// Close the current file
 			rfile.close();
 
+			// Open the current file
 			ifstream sfile(sfilename);
 
+			// If the current file is not opening, cout an error message
 			if (!sfile.is_open())
 			{
 				cout << "Error opening file: " << sfilename << ". Please ensure that the file is downloaded and it exists in the correct location." << endl;
@@ -427,6 +465,7 @@ void Requests::requestHistory(double amount)
 				}
 			}
 
+			// Close the current file
 			sfile.close();
 
 			outRequests(amount);
@@ -440,18 +479,22 @@ void Requests::requestHistory(double amount)
 // Function to view and approve/deny incoming requests
 void Requests::inRequests(double amount)
 {
+	// prompt for the current user to enter their ID
 	string userID;
 
 	cout << "\nPlease enter your userID: \n" << endl;
 	cin >> userID;
 	cout << "\n";
 
+	// Creating a variable set to the current filename for convenience
 	const char* cfilename = "CustomerList.txt";
 
 	string line;
 
+	// Open the current file
 	ifstream cfile(cfilename);
 
+	// If the current file is not opening, cout an error message
 	if (!cfile.is_open())
 	{
 		cout << "Error opening file: " << cfilename << ". Please ensure that the file is downloaded and it exists in the correct location." << endl;
@@ -465,12 +508,15 @@ void Requests::inRequests(double amount)
 
 			cfile.close();
 
+			// Creating a variable set to the current filename for convenience
 			const char* rfilename = "RequestSent.txt";
 
 			string line;
 
+			// Open the current file
 			ifstream rfile(rfilename);
 
+			// If the current file is not opening, cout an error message
 			if (!rfile.is_open())
 			{
 				cout << "Error opening file: " << rfilename << ". Please ensure that the file is downloaded and it exists in the correct location." << endl;
@@ -484,6 +530,7 @@ void Requests::inRequests(double amount)
 				}
 			}
 
+			// Close the current file
 			rfile.close();
 
 			navigateRequests(amount);
