@@ -155,6 +155,7 @@ void Requests::outRequests(double amount)
 	} while (choice != 1 && choice != 2 && choice != 3 && choice != 4);
 }
 
+// Function that allows a user to send money to another user
 void Requests::sendMoney(double amount)
 {
 	string userID;
@@ -257,6 +258,7 @@ void Requests::sendMoney(double amount)
 	outRequests(amount);
 }
 
+// Function that allows a user to request money from another user
 void Requests::requestMoney(double amount)
 {
 	string userID;
