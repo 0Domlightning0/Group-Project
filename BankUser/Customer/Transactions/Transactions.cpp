@@ -33,40 +33,63 @@ Transactions::~Transactions()
 // Deposit function that allows a user to add money to a checking(debit) account
 void Transactions::depositC(double amount)
 {
-	//Fetch unique userID from a file
-	//Use an if statement to verify the user has an active checking account, else cout error
-	//Use getter to fetch amount currently held in the account
-	//Ask user how much money they would like to add to account, store in a variable
-	//userBalance += amount
-	//cout updated balance, transaction complete
+	string userID;
 
-	double userBalance = 1000;
+	cout << "\nPlease enter your userID: \n" << endl;
+	cin >> userID;
+	cout << "\n";
 
-	cout << "\nPlease enter the amount you would like to deposit: " << endl;
-	cin >> amount;
+	const char* cfilename = "CustomerList.txt";
 
-	userBalance += amount;
+	string line;
 
-	cout << "\nTransaction Successful!\nYour updated balance is: $" << userBalance << endl;
+	ifstream cfile(cfilename);
 
-	const char* filename = "CheckingDeposits.txt";
-
-	ofstream file;
-
-	file.open(filename, ios_base::app);
-
-	if (!file.is_open())
+	if (!cfile.is_open())
 	{
-		cout << "Error opening file: " << filename << ". Please ensure that the file is downloaded and it exists in the correct location." << endl;
-	}
-	else if (file.is_open())
-	{
-		cout << "\n";
-
-		file << "(USERID)" << " deposited " << amount << " to checking" << "\n";
+		cout << "Error opening file: " << cfilename << ". Please ensure that the file is downloaded and it exists in the correct location." << endl;
 	}
 
-	file.close();
+	while (getline(cfile, line))
+	{
+		if (line.find(userID) != string::npos)
+		{
+			cout << line << endl;
+
+			cfile.close();
+
+			double userBalance = 1000;
+
+			cout << "\nPlease enter the amount you would like to deposit: " << endl;
+			cin >> amount;
+
+			userBalance += amount;
+
+			cout << "\nTransaction Successful!\nYour updated balance is: $" << userBalance << endl;
+
+			const char* filename = "CheckingDeposits.txt";
+
+			ofstream file;
+
+			file.open(filename, ios_base::app);
+
+			if (!file.is_open())
+			{
+				cout << "Error opening file: " << filename << ". Please ensure that the file is downloaded and it exists in the correct location." << endl;
+			}
+			else if (file.is_open())
+			{
+				cout << "\n";
+
+				file << userID << " deposited " << amount << " to checking" << "\n";
+			}
+
+			file.close();
+
+			createTransaction(amount);
+		}
+	}
+	cout << "Error: User not found" << endl;
 
 	createTransaction(amount);
 }
@@ -74,40 +97,63 @@ void Transactions::depositC(double amount)
 // Deposit function that allows a user to add money to a savings account
 void Transactions::depositS(double amount)
 {
-	//Fetch unique userID from a file
-	//Use an if statement to verify the user has an active savings account, else cout error
-	//Use getter to fetch amount currently held in the account
-	//Ask user how much money they would like to add to account, store in a variable
-	//userBalance += amount
-	//cout updated balance, transaction complete
+	string userID;
 
-	double userBalance = 1000;
+	cout << "\nPlease enter your userID: \n" << endl;
+	cin >> userID;
+	cout << "\n";
 
-	cout << "\nPlease enter the amount you would like to deposit: " << endl;
-	cin >> amount;
+	const char* cfilename = "CustomerList.txt";
 
-	userBalance += amount;
+	string line;
 
-	cout << "\nTransaction Successful!\nYour updated balance is: $" << userBalance << endl;
+	ifstream cfile(cfilename);
 
-	const char* filename = "SavingsDeposits.txt";
-
-	ofstream file;
-
-	file.open(filename, ios_base::app);
-
-	if (!file.is_open())
+	if (!cfile.is_open())
 	{
-		cout << "Error opening file: " << filename << ". Please ensure that the file is downloaded and it exists in the correct location." << endl;
-	}
-	else if (file.is_open())
-	{
-		cout << "\n";
-
-		file << "(USERID)" << " deposited " << amount << " to savings" << "\n";
+		cout << "Error opening file: " << cfilename << ". Please ensure that the file is downloaded and it exists in the correct location." << endl;
 	}
 
-	file.close();
+	while (getline(cfile, line))
+	{
+		if (line.find(userID) != string::npos)
+		{
+			cout << line << endl;
+
+			cfile.close();
+
+			double userBalance = 1000;
+
+			cout << "\nPlease enter the amount you would like to deposit: " << endl;
+			cin >> amount;
+
+			userBalance += amount;
+
+			cout << "\nTransaction Successful!\nYour updated balance is: $" << userBalance << endl;
+
+			const char* filename = "SavingsDeposits.txt";
+
+			ofstream file;
+
+			file.open(filename, ios_base::app);
+
+			if (!file.is_open())
+			{
+				cout << "Error opening file: " << filename << ". Please ensure that the file is downloaded and it exists in the correct location." << endl;
+			}
+			else if (file.is_open())
+			{
+				cout << "\n";
+
+				file << userID << " deposited " << amount << " to savings" << "\n";
+			}
+
+			file.close();
+
+			createTransaction(amount);
+		}
+	}
+	cout << "Error: User not found" << endl;
 
 	createTransaction(amount);
 }
@@ -115,99 +161,145 @@ void Transactions::depositS(double amount)
 // Withdraw function that allows a user to take money out of a checking(debit) account
 void Transactions::withdrawC(double amount)
 {
-	//Fetch unique userID from a file
-	//Use an if statement to verify the user has an active checking account, else cout error
-	//Use getter to fetch amount currently held in the account
-	//Ask user how much money they would like to take out of account, store in a variable
-	// if amount > userBalance, cout error, insufficient funds
-	//userBalance -= amount
-	//cout updated balance, transaction complete
+	string userID;
 
-	double userBalance = 1000;
+	cout << "\nPlease enter your userID: \n" << endl;
+	cin >> userID;
+	cout << "\n";
 
-	cout << "\nPlease enter the amount you would like to withdraw: " << endl;
-	cin >> amount;
+	const char* cfilename = "CustomerList.txt";
 
-	if (userBalance < amount)
+	string line;
+
+	ifstream cfile(cfilename);
+
+	if (!cfile.is_open())
 	{
-		cout << "\nERROR: Insufficient funds" << endl;
+		cout << "Error opening file: " << cfilename << ". Please ensure that the file is downloaded and it exists in the correct location." << endl;
 	}
-	else
+
+	while (getline(cfile, line))
 	{
-		userBalance -= amount;
-
-		cout << "\nTransaction Successful!\nYour updated balance is: $" << userBalance << endl;
-
-		createTransaction(amount);
-
-		const char* filename = "CheckingWithdrawals.txt";
-
-		ofstream file;
-
-		file.open(filename, ios_base::app);
-
-		if (!file.is_open())
+		if (line.find(userID) != string::npos)
 		{
-			cout << "Error opening file: " << filename << ". Please ensure that the file is downloaded and it exists in the correct location." << endl;
-		}
-		else if (file.is_open())
-		{
-			cout << "\n";
+			cout << line << endl;
 
-			file << "(USERID)" << " withdrew " << amount << " from checking" << "\n";
-		}
+			cfile.close();
 
-		file.close();
+			double userBalance = 1000;
+
+			cout << "\nPlease enter the amount you would like to withdraw: " << endl;
+			cin >> amount;
+
+			if (userBalance < amount)
+			{
+				cout << "\nERROR: Insufficient funds" << endl;
+			}
+			else
+			{
+				userBalance -= amount;
+
+				cout << "\nTransaction Successful!\nYour updated balance is: $" << userBalance << endl;
+
+				const char* filename = "CheckingWithdrawals.txt";
+
+				ofstream file;
+
+				file.open(filename, ios_base::app);
+
+				if (!file.is_open())
+				{
+					cout << "Error opening file: " << filename << ". Please ensure that the file is downloaded and it exists in the correct location." << endl;
+				}
+				else if (file.is_open())
+				{
+					cout << "\n";
+
+					file << userID << " withdrew " << amount << " from checking" << "\n";
+				}
+
+				file.close();
+			}
+
+			createTransaction(amount);
+		}
 	}
+	cout << "Error: User not found" << endl;
+
+	createTransaction(amount);
 }
 
 // Withdraw function that allows a user to take money out of a savings account
 void Transactions::withdrawS(double amount)
 {
-	//Fetch unique userID from a file
-	//Use an if statement to verify the user has an active savings account, else cout error
-	//Use getter to fetch amount currently held in the account
-	//Ask user how much money they would like to add to account, store in a variable
-	//if amount > userBalance, cout error, insufficient funds
-	//userBalance -= amount
-	//cout updated balance, transaction complete
+	string userID;
 
-	double userBalance = 1000;
+	cout << "\nPlease enter your userID: \n" << endl;
+	cin >> userID;
+	cout << "\n";
 
-	cout << "\nPlease enter the amount you would like to withdraw: " << endl;
-	cin >> amount;
+	const char* cfilename = "CustomerList.txt";
 
-	if (userBalance < amount)
+	string line;
+
+	ifstream cfile(cfilename);
+
+	if (!cfile.is_open())
 	{
-		cout << "\nERROR: Insufficient funds" << endl;
+		cout << "Error opening file: " << cfilename << ". Please ensure that the file is downloaded and it exists in the correct location." << endl;
 	}
-	else
+
+	while (getline(cfile, line))
 	{
-		userBalance -= amount;
-
-		cout << "\nTransaction Successful!\nYour updated balance is: $" << userBalance << endl;
-
-		createTransaction(amount);
-
-		const char* filename = "SavingsWithdrawals.txt";
-
-		ofstream file;
-
-		file.open(filename, ios_base::app);
-
-		if (!file.is_open())
+		if (line.find(userID) != string::npos)
 		{
-			cout << "Error opening file: " << filename << ". Please ensure that the file is downloaded and it exists in the correct location." << endl;
-		}
-		else if (file.is_open())
-		{
-			cout << "\n";
+			cout << line << endl;
 
-			file << "(USERID)" << " withdrew " << amount << " from savings" << "\n";
-		}
+			cfile.close();
 
-		file.close();
+			double userBalance = 1000;
+
+			cout << "\nPlease enter the amount you would like to withdraw: " << endl;
+			cin >> amount;
+
+			if (userBalance < amount)
+			{
+				cout << "\nERROR: Insufficient funds" << endl;
+			}
+			else
+			{
+				userBalance -= amount;
+
+				cout << "\nTransaction Successful!\nYour updated balance is: $" << userBalance << endl;
+
+				createTransaction(amount);
+
+				const char* filename = "CheckingWithdrawals.txt";
+
+				ofstream file;
+
+				file.open(filename, ios_base::app);
+
+				if (!file.is_open())
+				{
+					cout << "Error opening file: " << filename << ". Please ensure that the file is downloaded and it exists in the correct location." << endl;
+				}
+				else if (file.is_open())
+				{
+					cout << "\n";
+
+					file << userID << " withdrew " << amount << " from checking" << "\n";
+				}
+
+				file.close();
+			}
+
+			createTransaction(amount);
+		}
 	}
+	cout << "Error: User not found" << endl;
+
+	createTransaction(amount);
 }
 
 void Transactions::createTransaction(double amount)
